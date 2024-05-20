@@ -1,20 +1,38 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: '#161622',
+        secondary: {
+          DEFAULT: '#FF9C01',
+          100: '#FF9001',
+          200: '#FF8E01',
+          300: '#FF8C01',
+          400: '#FF7A01'
+        },
+        black: {
+          DEFAULT: '#000',
+          100: '#1E1E2D',
+          200: '#232533'
+        },
+        gray: {
+          100: '#CDCDE0'
+        }
       },
-    },
+      fontFamily: {
+        poppins: ['var(--poppins)']
+      }
+    }
   },
-  plugins: [],
-};
-export default config;
+  plugins: [
+    require('tailwind-scrollbar')
+  ]
+}
+export default config
