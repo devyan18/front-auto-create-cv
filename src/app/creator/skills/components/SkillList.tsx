@@ -49,6 +49,7 @@ export default function SkillList () {
         {matchOfSkills.map((skill) => (
           <SkillItem
             key={skill.skillId}
+            skillId={skill.skillId || ''}
             name={skill.name}
             logo={skill.logo || ''}
             yearsOfExperience={skill.yearsOfExperience}

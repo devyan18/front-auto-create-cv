@@ -27,3 +27,24 @@ export const getSkillsService = (access_token: string) => {
     }
   })
 }
+
+export const deleteSkillService = (skillId: string, access_token: string) => {
+  return fetch(`${API_URL}/api/skill/${skillId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${access_token}`
+    }
+  })
+}
+
+export const updateSkillService = (skill: Skill, access_token: string) => {
+  return fetch(`${API_URL}/api/skill/${skill.skillId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${access_token}`
+    },
+    body: JSON.stringify(skill)
+  })
+}

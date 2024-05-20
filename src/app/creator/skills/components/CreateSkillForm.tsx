@@ -10,7 +10,7 @@ import { useSession } from 'next-auth/react'
 import { useSkills } from '@/context/SkillContext'
 import { toast } from 'react-toastify'
 
-type SkillForm = {
+export type SkillForm = {
   name: string
   yearsOfExperience: number
   logo: string

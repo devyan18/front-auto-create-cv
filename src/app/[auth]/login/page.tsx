@@ -55,6 +55,7 @@ export default function LoginPage () {
         onSubmit={handleSubmit(onSubmit)}
       >
         <TextField
+          labelTheme='light'
           label="Email"
           name="email"
           placeholder="example@test.com"
@@ -63,6 +64,7 @@ export default function LoginPage () {
           disabled={isLoading}
         />
         <TextField
+          labelTheme='light'
           disabled={isLoading}
           label="Password"
           name="password"

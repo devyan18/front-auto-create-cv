@@ -39,7 +39,7 @@ export default function CustomButton ({
         : (
         <>
           <span className='text-primary font-poppins text-md'>{icon}</span>
-          <span className={` flex-1 text-left text-primary font-poppins font-semibold text-md ${otherStyles}`}>
+          <span className={`flex-1 text-left text-primary font-poppins font-semibold text-md ${otherStyles}`}>
             {title}
           </span>
         </>
