@@ -5,6 +5,7 @@ import { useSkills } from '@/context/SkillContext'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
+import { motion } from 'framer-motion'
 
 type Props = {
   skillId: string;
@@ -44,20 +45,34 @@ export default function SkillItem ({
 
   return (
     <div className="flex items-center gap-4 justify-start p-2 hover:bg-black-100 rounded-lg">
-      <img
+      <motion.img
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
         src={logo}
         alt={name}
         className="w-[40px] rounded-xl object-contain select-none"
       />
       <div className="flex flex-col justify-center">
-        <h3 className="text-lg font-semibold text-white select-none">{name}</h3>
-        <p className="text-sm font-light text-gray-400 select-none">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
+          className="text-lg font-semibold text-white select-none"
+        >
+          {name}
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
+          className="text-sm font-light text-gray-400 select-none"
+        >
           {yearsOfExperience} years of experience
-        </p>
+        </motion.p>
       </div>
 
       <div className="flex-1 flex flex-row gap-4 place-self-center justify-end items-center">
-        <button
+        <motion.button
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
           className="text-yellow-300 hover:text-yellow-500"
           onClick={() => {
             handleEditSkill()
@@ -80,8 +95,10 @@ export default function SkillItem ({
               <path d="M20.385 6.585a2.1 2.1 0 0 0-2.97-2.97L9 12v3h3zM16 5l3 3" />
             </g>
           </svg>
-        </button>
-        <button
+        </motion.button>
+        <motion.button
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
           className="text-red-500 hover:text-red-700"
           onClick={handleDeleteSkill}
         >
@@ -96,7 +113,7 @@ export default function SkillItem ({
               d="M5 21V6H4V4h5V3h6v1h5v2h-1v15zm2-2h10V6H7zm2-2h2V8H9zm4 0h2V8h-2zM7 6v13z"
             />
           </svg>
-        </button>
+        </motion.button>
       </div>
     </div>
   )

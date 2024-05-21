@@ -47,7 +47,7 @@ export default function LoginPage () {
   }
 
   return (
-    <div className="border-2 border-black-100 p-4 rounded-xl">
+    <div className="border-4 border-black-100 p-4 rounded-xl">
       <h2 className="text-white text-3xl font-bold">Sign In</h2>
 
       <form

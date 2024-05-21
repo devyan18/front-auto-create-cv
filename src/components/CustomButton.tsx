@@ -1,6 +1,7 @@
 'use client'
 
 import type { ReactNode } from 'react'
+import { motion } from 'framer-motion'
 
 type CustomButtonProps = {
   onClick: () => void;
@@ -22,7 +23,9 @@ export default function CustomButton ({
   type = 'button'
 }: CustomButtonProps) {
   return (
-    <button
+    <motion.button
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       type={type}
       onClick={onClick}
       className={`
@@ -39,11 +42,11 @@ export default function CustomButton ({
         : (
         <>
           <span className='text-primary font-poppins text-md'>{icon}</span>
-          <span className={`flex-1 text-left text-primary font-poppins font-semibold text-md ${otherStyles}`}>
+          <span className={`flex-1 text-primary font-poppins font-semibold text-md ${otherStyles}`}>
             {title}
           </span>
         </>
           )}
-    </button>
+    </motion.button>
   )
 }
