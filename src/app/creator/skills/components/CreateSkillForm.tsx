@@ -11,8 +11,9 @@ import { useSkills } from '@/context/SkillContext'
 import { toast } from 'react-toastify'
 
 export type SkillForm = {
+  skillId?: string
   name: string
-  yearsOfExperience: number
+  yearsOfExperience: number | string
   logo: string
 }
 

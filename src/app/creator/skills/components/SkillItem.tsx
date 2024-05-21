@@ -47,7 +47,7 @@ export default function SkillItem ({
     <div className="flex items-center gap-4 justify-start p-2 hover:bg-black-100 rounded-lg">
       <motion.img
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
+        whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
         src={logo}
         alt={name}
         className="w-[40px] rounded-xl object-contain select-none"
@@ -55,14 +55,14 @@ export default function SkillItem ({
       <div className="flex flex-col justify-center">
         <motion.p
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
+          whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
           className="text-lg font-semibold text-white select-none"
         >
           {name}
         </motion.p>
         <motion.p
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
+          whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
           className="text-sm font-light text-gray-400 select-none"
         >
           {yearsOfExperience} years of experience
@@ -72,7 +72,7 @@ export default function SkillItem ({
       <div className="flex-1 flex flex-row gap-4 place-self-center justify-end items-center">
         <motion.button
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
+          whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
           className="text-yellow-300 hover:text-yellow-500"
           onClick={() => {
             handleEditSkill()
@@ -98,7 +98,7 @@ export default function SkillItem ({
         </motion.button>
         <motion.button
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
+          whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
           className="text-red-500 hover:text-red-700"
           onClick={handleDeleteSkill}
         >

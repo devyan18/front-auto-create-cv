@@ -1,15 +1,15 @@
 'use client'
 
-import { Skill, createNewSkillService } from '@/common/services/skills.service'
+import { Skill, updateSkillService } from '@/common/services/skills.service'
 import { CustomButton, TextField } from '@/components'
 import { useSkills } from '@/context/SkillContext'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
 import { createSkillSchema } from '../components/validations/create-skill.schema'
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
+import { useForm } from 'react-hook-form'
 import { SkillForm } from '../components/CreateSkillForm'
 
 export default function OneSkillPage () {
@@ -19,26 +19,23 @@ export default function OneSkillPage () {
 
   const [isDiff, setDiff] = useState<boolean>(false)
 
-  const { skills } = useSkills()
+  const { skills, loadSkills } = useSkills()
   const { data } = useSession()
+
+  const router = useRouter()
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isLoading: isLoadingDefaultValues },
     setValue,
     getValues
   } = useForm<SkillForm>({
     mode: 'onChange',
-    defaultValues: skill || {
-      name: '',
-      yearsOfExperience: 0,
-      logo: ''
-    },
     resolver: zodResolver(createSkillSchema)
   })
 
-  const onSubmit = async (skillForm: Skill) => {
+  const onSubmit = async (skillForm: SkillForm) => {
     const access_token = data!.access_token
 
     if (!access_token) return null
@@ -46,7 +43,7 @@ export default function OneSkillPage () {
     setLoading(true)
 
     try {
-      await createNewSkillService(skillForm, access_token)
+      await updateSkillService(skillId as string, skillForm, access_token)
 
       toast.success('Skill created successfully', {
         bodyClassName: 'text-white font-poppins font-regular',
@@ -54,6 +51,9 @@ export default function OneSkillPage () {
           backgroundColor: '#1E1E2D'
         }
       })
+
+      loadSkills()
+      setDiff(false)
     } catch (error) {
       console.error(error)
       toast.error('Failed to create skill')
@@ -69,7 +69,7 @@ export default function OneSkillPage () {
         setSkill(foundSkill)
 
         setValue('name', foundSkill.name)
-        setValue('yearsOfExperience', foundSkill.yearsOfExperience)
+        setValue('yearsOfExperience', foundSkill.yearsOfExperience.toString())
         setValue('logo', foundSkill.logo || '')
       }
     }
@@ -77,21 +77,6 @@ export default function OneSkillPage () {
 
   useEffect(() => {
     // verify if the form has been changed
-    const name = getValues('name')
-    const yearsOfExperience = getValues('yearsOfExperience')
-    const logo = getValues('logo')
-    console.log({ name, yearsOfExperience, logo })
-    if (skill) {
-      if (
-        name !== skill.name ||
-        yearsOfExperience !== skill.yearsOfExperience ||
-        logo !== skill.logo
-      ) {
-        setDiff(true)
-      } else {
-        setDiff(false)
-      }
-    }
   }, [skills, skillId, setValue, getValues, skill])
 
   if (!skill) {
@@ -112,12 +97,57 @@ export default function OneSkillPage () {
             {skill.yearsOfExperience} years of experience
           </p>
         </div>
+        <div className="flex-1 flex items-start p-2 justify-end">
+          <button
+            onClick={
+              () => router.push('/creator/skills')
+            }
+            className="text-secondary-200 hover:text-secondary-400">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M11 18h3.75a5.25 5.25 0 1 0 0-10.5H5M7.5 4L4 7.5L7.5 11"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
       <form
         className="flex flex-col gap-4 mt-6 min-w-72"
         onSubmit={handleSubmit(onSubmit)}
-        onChange={e => {
-          console.log({ e })
+        onChange={(e) => {
+          const name = getValues('name')
+          const yearsOfExperience = getValues('yearsOfExperience')
+          const logo = getValues('logo')
+
+          console.log({
+            name: skill.name,
+            yearsOfExperience: skill.yearsOfExperience,
+            logo: skill.logo
+          })
+          console.log({ name, yearsOfExperience, logo })
+
+          if (!skill) return
+
+          if (
+            name !== skill.name ||
+            yearsOfExperience !== skill.yearsOfExperience.toString() ||
+            logo !== skill.logo
+          ) {
+            setDiff(true)
+            return
+          }
+
+          setDiff(false)
         }}
       >
         <TextField
@@ -127,7 +157,7 @@ export default function OneSkillPage () {
           name="name"
           register={register}
           errors={errors.name}
-          disabled={isLoading}
+          disabled={isLoadingDefaultValues || isLoading}
         />
         <TextField
           labelTheme="light"
@@ -136,7 +166,7 @@ export default function OneSkillPage () {
           name="yearsOfExperience"
           register={register}
           errors={errors.yearsOfExperience}
-          disabled={isLoading}
+          disabled={isLoadingDefaultValues || isLoading}
         />
         <TextField
           labelTheme="light"
@@ -145,7 +175,7 @@ export default function OneSkillPage () {
           name="logo"
           register={register}
           errors={errors.logo}
-          disabled={isLoading}
+          disabled={isLoadingDefaultValues || isLoading}
         />
         <CustomButton
           icon={

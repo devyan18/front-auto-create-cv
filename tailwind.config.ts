@@ -15,7 +15,8 @@ const config: Config = {
           100: '#FF9001',
           200: '#FF8E01',
           300: '#FF8C01',
-          400: '#FF7A01'
+          400: '#FF7A01',
+          800: '#FF4A0144'
         },
         black: {
           DEFAULT: '#000',

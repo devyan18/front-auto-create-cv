@@ -1,3 +1,4 @@
+import type { ChangeEvent } from 'react'
 import type { UseFormRegister, FieldError } from 'react-hook-form'
 
 type TextFieldProps = {
@@ -7,8 +8,10 @@ type TextFieldProps = {
   isPrivate?: boolean;
   disabled?: boolean;
   errors?: FieldError | undefined;
-  register: UseFormRegister<any>;
+  register?: UseFormRegister<any>;
   labelTheme?: 'light' | 'dark';
+  value?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function TextField (props: TextFieldProps) {
@@ -23,7 +26,21 @@ export default function TextField (props: TextFieldProps) {
         type={props.isPrivate ? 'password' : 'text'}
         placeholder={props.placeholder}
         id={props.name}
-        {...props.register(props.name)}
+        {
+          ...props.onChange
+            ? { onChange: props.onChange }
+            : {}
+        }
+        {
+          ...props.value
+            ? { value: props.value }
+            : {}
+        }
+        {
+          ...props.register
+            ? props.register(props.name)
+            : {}
+        }
         className={`bg-black-100 border-2 border-black-100 p-2 rounded-lg text-white focus:outline-none focus:border-secondary disabled:bg-black-200 disabled:text-gray-500 disabled:pointer-events-none${
           props.errors?.message ? 'border-red-500' : ''
         }`}

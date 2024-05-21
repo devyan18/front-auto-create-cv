@@ -1,3 +1,4 @@
+import { SkillForm } from '@/app/creator/skills/components/CreateSkillForm'
 import { API_URL } from '@/common/utils/constants'
 
 export type Skill = {
@@ -7,7 +8,7 @@ export type Skill = {
   logo?: string
 }
 
-export const createNewSkillService = (skill: Skill, access_token: string) => {
+export const createNewSkillService = (skill: SkillForm, access_token: string) => {
   return fetch(`${API_URL}/api/skill`, {
     method: 'POST',
     headers: {
@@ -38,8 +39,8 @@ export const deleteSkillService = (skillId: string, access_token: string) => {
   })
 }
 
-export const updateSkillService = (skill: Skill, access_token: string) => {
-  return fetch(`${API_URL}/api/skill/${skill.skillId}`, {
+export const updateSkillService = (skillId: string, skill: SkillForm, access_token: string) => {
+  return fetch(`${API_URL}/api/skill/${skillId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -47,4 +48,27 @@ export const updateSkillService = (skill: Skill, access_token: string) => {
     },
     body: JSON.stringify(skill)
   })
+}
+
+export const getOneSkillService = async (skillId: string, access_token: string) => {
+  const request = await fetch(`${API_URL}/api/skill/${skillId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${access_token}`
+    }
+  })
+
+  if (!request.ok) {
+    console.log('Failed to fetch skill')
+    return {
+      name: '',
+      yearsOfExperience: 0,
+      logo: ''
+    }
+  }
+
+  const response = await request.json()
+
+  return response as Skill
 }

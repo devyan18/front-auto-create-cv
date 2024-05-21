@@ -11,7 +11,7 @@ type SkillContextProps = {
 
 const SkillContext = createContext<SkillContextProps>({
   skills: [],
-  loadSkills: () => {}
+  loadSkills: async () => {}
 })
 
 type Props = {

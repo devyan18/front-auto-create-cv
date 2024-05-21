@@ -31,7 +31,7 @@ export default function CustomButton ({
       className={`
       hover:bg-gradient-to-r hover:from-secondary hover:to-secondary transition-all duration-300 ease-in-out
       bg-gradient-to-l from-secondary to-secondary-400 rounded-full flex gap-1 justify-center items-center ${otherStyles} px-7 py-1  ${
-        disabled || isLoading ? 'opacity-50 disabled:cursor-not-allowed' : ''
+        disabled || isLoading ? 'disabled:cursor-not-allowed disabled:bg-gradient-to-l disabled:from-secondary-800 disabled:to-secondary-800' : ''
       }`}
       disabled={disabled || isLoading}
     >
@@ -43,7 +43,7 @@ export default function CustomButton ({
         <>
           <span className='text-primary font-poppins text-md'>{icon}</span>
           <span className={`flex-1 text-primary font-poppins font-semibold text-md ${otherStyles}`}>
-            {title}
+            {disabled ? 'Disabled' : title}
           </span>
         </>
           )}

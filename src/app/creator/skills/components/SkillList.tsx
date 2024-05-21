@@ -45,7 +45,7 @@ export default function SkillList () {
         value={searchSkills}
         onChange={(e) => setSearchSkills(e.target.value)}
       />
-      <div className="overflow-hidden max-h-[440px] scroll-smooth hover:overflow-y-auto flex flex-col gap-2 scrollbar-thin scrollbar-thumb-black-100 scrollbar-track-black-200">
+      <div className="overflow-hidden max-h-[440px] scroll-smooth overflow-y-auto flex flex-col gap-2 scrollbar-thin scrollbar-thumb-black-100 hover:scrollbar-thumb-black-100 scrollbar-track-black-200">
         {matchOfSkills.map((skill) => (
           <SkillItem
             key={skill.skillId}
