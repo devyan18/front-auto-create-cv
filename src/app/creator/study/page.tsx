@@ -7,7 +7,7 @@ export default function StudyPage () {
         </h1>
       </div>
       <div className="bg-black-200 rounded-xl">
-
+        <h1>HOla</h1>
       </div>
     </div>
   )
