@@ -87,7 +87,7 @@ export default function SkillItem ({
             <g
               fill="none"
               stroke="currentColor"
-              stroke-linecap="round"
+              strokeLinecap="round"
               stroke-linejoin="round"
               stroke-width="2"
             >

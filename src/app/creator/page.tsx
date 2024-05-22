@@ -63,7 +63,7 @@ export default function Creator () {
                     <g
                       fill="none"
                       stroke="currentColor"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
                     >
@@ -94,7 +94,7 @@ export default function Creator () {
                 }
                 title="Studies"
                 onClick={() => {
-                  console.log('Edit Profile')
+                  router.push('/creator/study')
                 }}
               />
               {/* <CustomButton /> */}
