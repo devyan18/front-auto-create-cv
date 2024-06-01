@@ -8,6 +8,7 @@ import SkillProvider from '@/context/SkillContext'
 import { ToastContainer } from 'react-toastify'
 
 import 'react-toastify/dist/ReactToastify.css'
+import { StudyProvider } from '@/context/StudyProvider'
 
 export const metadata: Metadata = {
   title: 'Create Your CV',
@@ -71,11 +72,13 @@ export default function RootLayout ({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body className={`${Poppins.variable} font-sans`}>
+    <html lang="en">
+      <body className={`${Poppins.variable} font-sans bg-primary`}>
         <MySessionProvider>
           <SkillProvider>
-            {children}
+            <StudyProvider>
+              {children}
+            </StudyProvider>
           </SkillProvider>
         </MySessionProvider>
         <ToastContainer

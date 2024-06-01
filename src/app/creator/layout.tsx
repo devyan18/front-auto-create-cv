@@ -6,8 +6,8 @@ type Props = {
 
 export default function CreateLayout ({ children }: Props) {
   return (
-      <main className="min-h-screen w-scren flex flex-col justify-center items-center bg-primary">
-        {children}
-      </main>
+    <main className="min-h-screen min-w-screen flex flex-col justify-center items-center bg-primary">
+      {children}
+    </main>
   )
 }

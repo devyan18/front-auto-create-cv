@@ -64,7 +64,7 @@ export default function Creator () {
                       fill="none"
                       stroke="currentColor"
                       strokeLinecap="round"
-                      stroke-linejoin="round"
+                      strokeLinejoin="round"
                       stroke-width="2"
                     >
                       <path d="M8.5 13.5L7 12l1.5-1.5m7 0L17 12l-1.5 1.5" />

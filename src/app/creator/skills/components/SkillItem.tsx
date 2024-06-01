@@ -88,7 +88,7 @@ export default function SkillItem ({
               fill="none"
               stroke="currentColor"
               strokeLinecap="round"
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               stroke-width="2"
             >
               <path d="M7 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1" />
