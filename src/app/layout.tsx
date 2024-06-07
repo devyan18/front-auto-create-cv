@@ -4,9 +4,7 @@ import './globals.css'
 import MySessionProvider from '@/context/SessionProvider'
 import fontLocal from 'next/font/local'
 import SkillProvider from '@/context/SkillContext'
-
 import { ToastContainer } from 'react-toastify'
-
 import 'react-toastify/dist/ReactToastify.css'
 import { StudyProvider } from '@/context/StudyProvider'
 

@@ -62,7 +62,7 @@ export const authOptions: NextAuthOptions = {
         })
 
         if (!access_token) throw new Error('No access token')
-
+        console.log(access_token)
         token.access_token = access_token
       }
 
@@ -72,7 +72,7 @@ export const authOptions: NextAuthOptions = {
       return token
     },
 
-    async session ({ token, session, user }) {
+    async session ({ token, session }) {
       session.user = token.user
       session.access_token = token.access_token
 

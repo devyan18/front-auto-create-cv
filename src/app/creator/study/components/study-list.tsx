@@ -33,11 +33,11 @@ export default function StudyList () {
         />
         <hr className="h-px mt-3 bg-gray-600 border-0" />
       </div>
-      <div className="px-6">
-        {studySearchFilter(study).map((study) => {
-          return <StudyItem key={study.studyId} data={study} />
-        })}
-      </div>
+        <div className="flex flex-col gap-2 mx-8 overflow-auto max-h-[450px] scrollbar-thin scrollbar-thumb-black-100 hover:scrollbar-thumb-black-100 scrollbar-track-gray-500 scroll-smooth">
+          {studySearchFilter(study).map((study) => {
+            return <StudyItem key={study.studyId} data={study} />
+          })}
+        </div>
     </div>
   )
 }

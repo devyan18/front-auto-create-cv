@@ -29,3 +29,13 @@ export const createStudyService = (access_token: string, study: Study) => {
     body: JSON.stringify(study)
   })
 }
+
+export const deleteStudyService = (access_token: string, studyId: string) => {
+  return fetch(`${API_URL}/api/studies/${studyId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${access_token}`
+    }
+  })
+}

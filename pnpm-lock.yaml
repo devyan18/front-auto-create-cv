@@ -20,6 +20,9 @@ importers:
       next-auth:
         specifier: ^4.24.7
         version: 4.24.7(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next-timeago:
+        specifier: ^0.2.0
+        version: 0.2.0(react@18.3.1)
       react:
         specifier: ^18
         version: 18.3.1
@@ -1165,6 +1168,12 @@ packages:
     peerDependenciesMeta:
       nodemailer:
         optional: true
+
+  next-timeago@0.2.0:
+    resolution: {integrity: sha512-XBvTTlzqHD95WN4bdhEDMEt17vDJmfICNeBOty/e2/cHA9R7vingBdnatYRBWN9AsMkns0B4W+zlUG4Ma3Aw8g==}
+    engines: {node: '>=8', npm: '>=5'}
+    peerDependencies:
+      react: '>=17.0.0'
 
   next@14.2.3:
     resolution: {integrity: sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==}
@@ -3005,6 +3014,10 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       uuid: 8.3.2
+
+  next-timeago@0.2.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:

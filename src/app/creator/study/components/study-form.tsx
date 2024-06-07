@@ -11,9 +11,12 @@ import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
 import { useEffect, useState } from 'react'
 import { useStudy } from '@/context/StudyProvider'
+import { useRouter } from 'next/navigation'
 
 export default function StudyForm () {
   const [isLoading, setLoading] = useState(false)
+
+  const router = useRouter()
 
   const { loadStudy } = useStudy()
 
@@ -73,7 +76,7 @@ export default function StudyForm () {
 
   return (
     <div className="bg-black-200 rounded-xl">
-      <div className="rounded-t-xl">
+      <div className="rounded-t-xl flex flex-row items-center justify-between">
         <h1 className="text-2xl font-poppins text-white font-medium pt-6 px-6 flex flex-row gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -88,6 +91,26 @@ export default function StudyForm () {
           </svg>
           <span>Make a new Study for you</span>
         </h1>
+        <button
+            onClick={() => router.push('/creator')}
+            className="text-secondary-200 hover:text-secondary-400 self-end  px-6"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M11 18h3.75a5.25 5.25 0 1 0 0-10.5H5M7.5 4L4 7.5L7.5 11"
+              />
+            </svg>
+          </button>
       </div>
       <hr className="h-px mt-3 bg-gray-600 border-0" />
       <form
@@ -112,7 +135,8 @@ export default function StudyForm () {
             { label: 'Grade', value: 'grade' },
             { label: 'Postgrade', value: 'postgrade' },
             { label: 'Master', value: 'master' },
-            { label: 'Doctorate', value: 'doctorate' }
+            { label: 'Doctorate', value: 'doctorate' },
+            { label: 'Courses', value: 'courses' }
           ]}
           register={register}
           errors={errors.level}
